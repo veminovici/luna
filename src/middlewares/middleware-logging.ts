@@ -2,7 +2,6 @@ import { NextFetchEvent, NextMiddleware, NextRequest } from "next/server";
 import { NextResponse } from "next/server";
 import { MiddlewareFactory } from "./middleware";
 
-
 export const withLoggingMiddleware: MiddlewareFactory = (next?: NextMiddleware): NextMiddleware => {
   return async (request: NextRequest, _next: NextFetchEvent) => {
 
@@ -20,7 +19,7 @@ export const withLoggingMiddleware: MiddlewareFactory = (next?: NextMiddleware):
 }
 
 export const loggingMiddleware = (): NextMiddleware => {
-  return (request: NextRequest, _next: NextFetchEvent) => {
+  return async (request: NextRequest, _next: NextFetchEvent) => {
     console.log("mw:log - rcv'd");
     return NextResponse.next();
   }
