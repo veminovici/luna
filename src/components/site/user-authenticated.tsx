@@ -51,6 +51,12 @@ export function UserAuthenticated() {
             Profile
             <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {
+            router.push('/dashboard')
+            }}>
+            Dashboard
+            <DropdownMenuShortcut>⇧⌘D</DropdownMenuShortcut>
+          </DropdownMenuItem>
           <DropdownMenuItem>
             Billing
             {/* <DropdownMenuShortcut>⌘B</DropdownMenuShortcut> */}
