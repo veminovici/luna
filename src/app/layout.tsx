@@ -1,9 +1,10 @@
-import { cn } from '@/lib/utils'
+import { cn } from '@lib/utils'
 import './globals.css'
 import type { Metadata } from 'next'
 import { Inter } from 'next/font/google'
 import SiteHeader from '@/components/site/site-header'
-import { SiteFooter } from '@/components/site/site-footer'
+import SiteFooter from '@/components/site/site-footer'
+import ThemeProvider from '@/components/providers/theme-provider'
 
 const inter = Inter({ subsets: ['latin'] })
 
@@ -23,13 +24,18 @@ export default function RootLayout({
         className={cn(
           "min-h-screen bg-background font-sans antialiased",
           inter.className
-        )}
-      >
-        <div className="relative flex min-h-screen flex-col">
-          <SiteHeader />
-          <div className="flex-1">{children}</div>
-          <SiteFooter />
-        </div>
+        )}>
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="system"
+          enableSystem
+          disableTransitionOnChange>
+          <div className="relative flex min-h-screen flex-col">
+            <SiteHeader />
+            <div className="flex-1">{children}</div>
+            <SiteFooter />
+          </div>
+        </ThemeProvider>
       </body>
     </html>
   )

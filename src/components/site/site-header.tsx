@@ -1,4 +1,5 @@
 import React from 'react'
+import { ThemeToggle } from './theme-toggle'
 
 export default function SiteHeader() {
   return (
@@ -6,8 +7,15 @@ export default function SiteHeader() {
       <div className="container flex h-14 items-center">
         {/* Logo */}
         <p>Logo</p>
-        {/* The toggle */}
-        <p>Toggle</p>
+        {/* The right navigation */}
+        <div className="flex flex-1 items-center justify-between space-x-2 md:justify-end">
+          <nav className="flex items-center">
+            {/* The icons to social */}
+            {/* <SocialNavContainer /> */}
+            {/* Mood toggle */}
+            <ThemeToggle />
+          </nav>
+        </div>
       </div>
     </header>
   )
