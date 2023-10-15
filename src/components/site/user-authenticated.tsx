@@ -13,11 +13,14 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@ui/dropdown-menu"
+import { redirect, useRouter } from "next/navigation"
+import Link from "next/link"
   
 export function UserAuthenticated() {
   const { data: session } = useSession()
   const img = session?.user?.image ?? "";
-  console.log(session?.user);
+
+  const router = useRouter();
 
   return (
     <DropdownMenu>
@@ -42,24 +45,26 @@ export function UserAuthenticated() {
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
         <DropdownMenuGroup>
-          <DropdownMenuItem>
+          <DropdownMenuItem onClick={() => {
+            router.push('/profile')
+            }}>
             Profile
-            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
+            {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
           </DropdownMenuItem>
           <DropdownMenuItem>
             Billing
-            <DropdownMenuShortcut>⌘B</DropdownMenuShortcut>
+            {/* <DropdownMenuShortcut>⌘B</DropdownMenuShortcut> */}
           </DropdownMenuItem>
           <DropdownMenuItem>
             Settings
-            <DropdownMenuShortcut>⌘S</DropdownMenuShortcut>
+            {/* <DropdownMenuShortcut>⌘S</DropdownMenuShortcut> */}
           </DropdownMenuItem>
           <DropdownMenuItem>New Team</DropdownMenuItem>
         </DropdownMenuGroup>
         <DropdownMenuSeparator />
         <DropdownMenuItem onSelect={() => signOut({ callbackUrl: '/' })}>
           Log out
-          <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut>
+          {/* <DropdownMenuShortcut>⇧⌘Q</DropdownMenuShortcut> */}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
