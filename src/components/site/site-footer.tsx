@@ -1,3 +1,4 @@
+import SocialNav from "./social-nav";
 
 export default function SiteFooter() {
   return (
@@ -6,7 +7,13 @@ export default function SiteFooter() {
         <p className="text-center text-sm leading-loose text-muted-foreground md:text-left">
           Built by{" "} Vlad Eminovici.
         </p>
-        {/* The icons to social */}
+        {/* The nav for the social links */}
+        {/* <p>
+          <SocialNav />
+        </p> */}
+        <p>
+          <SocialNav />
+        </p>
       </div>
     </footer>
   )
