@@ -3,7 +3,7 @@
 import React from 'react'
 import { Button, buttonVariants } from '@ui/button'
 import { signIn } from 'next-auth/react'
-import { FaRegUser } from 'react-icons/fa6';
+import { FaUser } from 'react-icons/fa6';
 
 export default function UserUnauthenticated() {
   return (
@@ -12,10 +12,10 @@ export default function UserUnauthenticated() {
       onClick={() => signIn()}
       className={buttonVariants({
           size: 'sm',
-          className: 'mx-2 h-9 w-9 rounded-full ring-1',
+          className: 'mx-2 w-10 h-10 rounded-full ring-1',
       })}
     >
-      <FaRegUser/>
+      <FaUser className='h-16'/>
     </Button>
   )
 }

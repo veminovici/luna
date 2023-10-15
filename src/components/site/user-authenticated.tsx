@@ -13,8 +13,8 @@ import {
     DropdownMenuShortcut,
     DropdownMenuTrigger,
 } from "@ui/dropdown-menu"
-import { redirect, useRouter } from "next/navigation"
-import Link from "next/link"
+import { useRouter } from "next/navigation"
+import { FaRegUser } from "react-icons/fa6"
   
 export function UserAuthenticated() {
   const { data: session } = useSession()
@@ -25,10 +25,10 @@ export function UserAuthenticated() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative mx-2 w-9 rounded-full ring-1">
-          <Avatar className="h-8 w-8">
+        <Button variant="ghost" className="relative mx-2 h-10 w-10 rounded-full ring-1">
+          <Avatar className="h-9 w-9">
             <AvatarImage src={img} alt="@shadcn" />
-            <AvatarFallback>SC</AvatarFallback>
+            <AvatarFallback><FaRegUser/></AvatarFallback>
           </Avatar>
         </Button>
       </DropdownMenuTrigger>
@@ -49,7 +49,7 @@ export function UserAuthenticated() {
             router.push('/profile')
             }}>
             Profile
-            {/* <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut> */}
+            <DropdownMenuShortcut>⇧⌘P</DropdownMenuShortcut>
           </DropdownMenuItem>
           <DropdownMenuItem>
             Billing
