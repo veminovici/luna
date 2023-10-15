@@ -16,7 +16,6 @@ export default function SocialNavElement({item}: SocialNavElementProps) {
   // Get the icon element
   const icon = Icons[item?.icon ?? NO_ICON];
   const element = icon({className: "h-5 w-5"}) ?? null;
-  console.log({element});
 
   return (
     <Link
