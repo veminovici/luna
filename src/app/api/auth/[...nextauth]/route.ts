@@ -1,4 +1,5 @@
-import { AuthAdapter } from '@lib/auth-adapter';
+import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
+import clientPromise from '@lib/mongo/client';
 import NextAuth, { AuthOptions } from 'next-auth'
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 
@@ -9,14 +10,15 @@ export const authOptions = {
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       profile(profile: GoogleProfile, _tokens) {
         console.log("auth::profile called");
-        console.log("  profile: " + profile);
+        console.log("  profile: " + JSON.stringify(profile));
 
         return {
           id: profile.sub,
           name: profile.name,
           email: profile.email,
           image: profile.picture,
-          role: profile.role ?? 'user'
+          role: profile.role ?? 'user',
+          address: "My address is here"
         }
       }
     })
@@ -24,11 +26,11 @@ export const authOptions = {
   callbacks: {
     //@ts-ignore
     async jwt({ token, user, trigger, session }) {
-      console.log("auth::jwt called");
-      console.log("  token: " + token);
-      console.log("  user: " + user);
-      console.log("  trigger: " + trigger);
-      console.log("  session: " + session);
+      console.log("AUTH::JWT");
+      console.log("  token: " + JSON.stringify(token));
+      console.log("  user: " + JSON.stringify(user));
+      console.log("  trigger: " + JSON.stringify(trigger));
+      console.log("  session: " + JSON.stringify(session));
 
       if (user) {
         token.role = user.role
@@ -41,18 +43,25 @@ export const authOptions = {
       return token
     },
     //@ts-ignore
-    async session({session, token}) {
-      console.log("auth::session called");
-      console.log("  token: " + token);
-      console.log("  session: " + session);
+    async session({session, user, trigger, token}) {
+      console.log("AUTH::SESSION");
+      console.log("  token: " + JSON.stringify(token));
+      console.log("  user: " + JSON.stringify(user));
+      console.log("  trigger: " + JSON.stringify(trigger));
+      console.log("  session: " + JSON.stringify(session));
 
-      session.user.role = token.role
+      session.user.role = user.role;
+      session.user.address = user.address;
+      
       return session
     }
   },
-  // adapter: AuthAdapter(),
+  adapter: MongoDBAdapter(clientPromise),
+  session: {
+    strategy: 'database'
+  },
   pages: {
-      signIn: '/signin'
+    signIn: '/signin'
   },
 }
 
