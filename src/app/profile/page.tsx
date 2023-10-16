@@ -5,7 +5,7 @@ import React from 'react'
 import { authOptions } from '../api/auth/[...nextauth]/route'
 
 export default async function Profile() {
-  const session = await getServerSession(authOptions)
+  const session = await getServerSession(authOptions);
 
   if(!session) {
     redirect('/signin?callbackUrl=/dashboard')

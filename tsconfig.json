@@ -22,7 +22,6 @@
       "@components/*": ["./src/components/*"],
       "@config/*": ["./src/config/*"],
       "@lib/*": ["./src/lib/*"],
-      "@middlewares/*": ["src/lib/middlewares/*"],
       "@providers/*": ["./src/components/providers/*"],
       "@ui/*": ["./src/components/ui/*"],
       "@/*": ["./src/*"]

@@ -1,6 +1,6 @@
 import { MongoDBAdapter } from '@next-auth/mongodb-adapter'
 import clientPromise from '@lib/mongo/client';
-import NextAuth, { AuthOptions } from 'next-auth'
+import NextAuth, { Session } from 'next-auth'
 import GoogleProvider, { GoogleProfile } from 'next-auth/providers/google'
 
 export const authOptions = {
@@ -25,25 +25,25 @@ export const authOptions = {
   ],
   callbacks: {
     //@ts-ignore
-    async jwt({ token, user, trigger, session }) {
-      console.log("AUTH::JWT");
-      console.log("  token: " + JSON.stringify(token));
-      console.log("  user: " + JSON.stringify(user));
-      console.log("  trigger: " + JSON.stringify(trigger));
-      console.log("  session: " + JSON.stringify(session));
+    // async jwt({ token, user, trigger, session }) {
+    //   console.log("AUTH::JWT");
+    //   console.log("  token: " + JSON.stringify(token));
+    //   console.log("  user: " + JSON.stringify(user));
+    //   console.log("  trigger: " + JSON.stringify(trigger));
+    //   console.log("  session: " + JSON.stringify(session));
 
-      if (user) {
-        token.role = user.role
-      }
+    //   if (user) {
+    //     token.role = user.role
+    //   }
 
-      if (trigger === 'update' && session?.name) {
-        token.name = session.name
-      }
+    //   if (trigger === 'update' && session?.name) {
+    //     token.name = session.name
+    //   }
 
-      return token
-    },
+    //   return token
+    // },
     //@ts-ignore
-    async session({session, user, trigger, token}) {
+    async session({session, user, trigger, token}: {session: Session}) {
       console.log("AUTH::SESSION");
       console.log("  token: " + JSON.stringify(token));
       console.log("  user: " + JSON.stringify(user));
@@ -57,14 +57,14 @@ export const authOptions = {
     }
   },
   adapter: MongoDBAdapter(clientPromise),
-  session: {
-    strategy: 'database'
-  },
+  // session: {
+  //   strategy: 'database'
+  // },
   pages: {
     signIn: '/signin'
   },
 }
 
-const handler = NextAuth(authOptions as AuthOptions)
+const handler = NextAuth(authOptions)
 
 export { handler as GET, handler as POST }
