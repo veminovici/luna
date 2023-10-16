@@ -9,8 +9,8 @@ export const authOptions = {
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
       profile(profile: GoogleProfile, _tokens) {
-        console.log("auth::profile called");
-        console.log("  profile: " + JSON.stringify(profile));
+        // console.log("auth::profile called");
+        // console.log("  profile: " + JSON.stringify(profile));
 
         return {
           id: profile.sub,
@@ -44,11 +44,11 @@ export const authOptions = {
     // },
     //@ts-ignore
     async session({session, user, trigger, token}: {session: Session}) {
-      console.log("AUTH::SESSION");
-      console.log("  token: " + JSON.stringify(token));
-      console.log("  user: " + JSON.stringify(user));
-      console.log("  trigger: " + JSON.stringify(trigger));
-      console.log("  session: " + JSON.stringify(session));
+      // console.log("AUTH::SESSION");
+      // console.log("  token: " + JSON.stringify(token));
+      // console.log("  user: " + JSON.stringify(user));
+      // console.log("  trigger: " + JSON.stringify(trigger));
+      // console.log("  session: " + JSON.stringify(session));
 
       session.user.role = user.role;
       session.user.address = user.address;
