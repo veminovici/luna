@@ -41,6 +41,9 @@ export function UserAuthenticated() {
             <p className="text-xs leading-none text-muted-foreground">
               {session?.user?.email}
             </p>
+            <p className="text-xs leading-none text-muted-foreground">
+              {session?.user?.role}
+            </p>
           </div>
         </DropdownMenuLabel>
         <DropdownMenuSeparator />
