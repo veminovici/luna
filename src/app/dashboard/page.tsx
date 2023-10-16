@@ -15,7 +15,7 @@ export default async function Dashboard() {
 
   return (
     <section className='flex flex-col items-center justify-center'>
-        <div className='text-lg font-bold'>Dashboard (Protected)</div>
+        <div className='text-lg font-bold'>Dashboard {session?.user?.name} {session?.user?.role}</div>
         <Sales />
         <Revenue />
         <Species />
