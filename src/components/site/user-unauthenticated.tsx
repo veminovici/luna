@@ -12,8 +12,9 @@ export default function UserUnauthenticated() {
       onClick={() => signIn()}
       className={buttonVariants({
           size: 'sm',
-          className: 'mx-2 w-10 h-10 rounded-full ring-1',
+          className: 'mx-2 rounded-full ring-1',
       })}
+      size="icon"
     >
       <FaUser className='h-16'/>
     </Button>

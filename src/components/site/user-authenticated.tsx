@@ -25,7 +25,7 @@ export function UserAuthenticated() {
   return (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
-        <Button variant="ghost" className="relative mx-2 h-10 w-10 rounded-full ring-1">
+        <Button variant="ghost" className="relative mx-2 rounded-full ring-1" size="icon">
           <Avatar className="h-9 w-9">
             <AvatarImage src={img} alt="@shadcn" />
             <AvatarFallback><FaRegUser/></AvatarFallback>
